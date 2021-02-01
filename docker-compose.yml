@@ -1,0 +1,13 @@
+version: '3.0'
+
+services:
+  port-scanner:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    entrypoint: ["java", "--class-path", "src/main/bin:src/main/resources/commons-cli-1.4.jar", "PortScanner"]
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    entrypoint: ["java", "-jar", "src/test/resources/junit-platform-console-standalone-1.7.2.jar", "--class-path", "src/test/bin:src/main/resources/commons-cli-1.4.jar", "--scan-class-path"]
